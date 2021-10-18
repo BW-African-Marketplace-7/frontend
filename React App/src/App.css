@@ -1,6 +1,28 @@
 .App{
+    
     height: 100%;
 }
 #root{
     height: 100%;
+}
+.App-header{   
+    background: linear-gradient(39deg, rgba(111,159,12,1) 12%, rgba(221,224,34,1) 32%, rgba(224,211,21,1) 55%, rgba(132,185,13,1) 83%);
+}
+.App-h1{
+    font-size: 3rem;
+    background: linear-gradient(0deg, rgb(46, 246, 250) 0%, rgb(2, 40, 121) 100%);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 1% 0% 2% 3%;
+    -webkit-text-stroke: .2rem rgba(0, 0, 0, 0.267);
+}
+.btn{
+    box-shadow: rgba(0, 0, 0, 0.63) 6px 4px;
+    text-decoration: none;
+    color: rgba(20, 20, 20, 0.575);
+    padding: 1%;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 1%;
+    background: rgb(56, 82, 168);
 }

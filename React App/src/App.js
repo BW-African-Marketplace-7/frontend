@@ -13,7 +13,7 @@ function App() {
     password: ''
   }
   const [islogged,setLogged] = useState(false)
-  const [disable, setDisable] = useState(true)
+  const [disable, setDisable] = useState(false)/*for now set to true when fixed*/ 
   const [login,setLogin] = useState(loginDefault)
   const [serverRes, setRes] = useState([])
 
@@ -103,6 +103,22 @@ function App() {
                 value={login.username}
                 name='username'/>
               </label>
+              <label>
+              Password:&nbsp;
+                <input 
+                id='password'
+                type='password'
+                onChange={onUpdate}
+                value={login.password}
+                name='password'/>
+              </label>
+              <input 
+              className='sub' 
+              name='sub' 
+              type='submit' 
+              value='submit' 
+              id='login-button' 
+              disabled={disable}/>
             </form>
           </div>
         </Route>

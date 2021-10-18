@@ -15,6 +15,7 @@ function App() {
   const [islogged,setLogged] = useState(false)
   const [disable, setDisable] = useState(false)/*for now set to true when fixed*/ 
   const [login,setLogin] = useState(loginDefault)
+  const [newLogin, setNewLogin] =useState(loginDefault)
   const [serverRes, setRes] = useState([])
 
 
@@ -50,7 +51,8 @@ function App() {
   }
 
   const update = (name, value) => {
-    //validate(name, value)
+    /*validate(name, value) needs to be setup through schema */
+    setNewLogin({...newLogin, [name]:value})
     setLogin({...login, [name]: value});
   }
 
@@ -113,12 +115,43 @@ function App() {
                 name='password'/>
               </label>
               <input 
-              className='sub' 
-              name='sub' 
-              type='submit' 
-              value='submit' 
-              id='login-button' 
-              disabled={disable}/>
+                className='sub' 
+                name='sub' 
+                type='submit' 
+                value='submit' 
+                id='login-button' 
+                disabled={disable}/>
+            </form>
+          </div>
+        </Route>
+        <Route path='/create'>
+        <div className='login-form-holder'>
+            <form id='new-login-form' onSubmit={onSub}>
+              <label>
+                Create A Username:&nbsp;
+              <input 
+                id='new-username'
+                type='text'
+                onChange={onUpdate}
+                value={newLogin.username}
+                name='username'/>
+              </label>
+              <label>
+              Create A Password:&nbsp;
+              <input 
+                id='new-password'
+                type='password'
+                onChange={onUpdate}  /* might get its own function in the future*/
+                value={newLogin.password}
+                name='password'/>
+              </label>
+              <input 
+                className='sub' 
+                name='sub' 
+                type='submit' 
+                value='submit' 
+                id='new-login-button' 
+                disabled={disable}/>
             </form>
           </div>
         </Route>

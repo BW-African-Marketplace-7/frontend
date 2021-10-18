@@ -37,3 +37,10 @@
     padding: 10%;
     background: rgba(0, 255, 170, 0.699);
 }
+#new-login-form{
+    display: flex;
+    margin: 20%;
+    width: 20%;
+    padding: 10%;
+    background: rgba(0, 255, 170, 0.699);
+}

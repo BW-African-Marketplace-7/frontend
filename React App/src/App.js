@@ -3,7 +3,8 @@ import axios from 'axios';
 import {BrowserRouter as Router}  from 'react-router-dom';
 import { Link, Route } from 'react-router-dom';
 import React, {useState, useEffect} from "react";
-
+import Create from './Create';
+import Login from './Login';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     username: '',
     password: ''
   }
+  const [loginData, setLoginData] =useState()
   const [islogged,setLogged] = useState(false)
   const [disable, setDisable] = useState(false)/*for now set to true when fixed*/ 
   const [login,setLogin] = useState(loginDefault)
@@ -29,7 +31,7 @@ function App() {
     )
     .finally(()=> {
       setLogin(loginDefault)
-      setLogged(!islogged)
+      setLogged(true)
     })
   }
   
@@ -43,37 +45,24 @@ function App() {
     postValues(newForm)
   }
 
-
-
   const onSub = event =>{
     event.preventDefault();
     submit();
   }
-
-  const update = (name, value) => {
-    /*validate(name, value) needs to be setup through schema */
-    setNewLogin({...newLogin, [name]:value})
-    setLogin({...login, [name]: value});
-  }
-
-  const onUpdate=(evt)=>{
-    const {name, value} = evt.target
-        update(name, value)
-  }
-
+  
   return (
     <Router>
       <div className="App">
         <header className="App-header">
           <h1 className='App-h1'>African Marketplace</h1>
           {islogged ? null: <Link to='/create' className='createbtn btn'>Sign Up</Link>}
-          {islogged ? null:<Link to={islogged ? '/' : '/login'} className='loginbtn btn'>Login</Link>}
+          {islogged ? null:<Link to='/login' className='loginbtn btn'>Login</Link>}
           {islogged ? <button onClick={()=>setLogged(!islogged)}className='logout btn'>Logout</button>: null}
-          <Link to='/' className='homebtn btn'>Home</Link>
+          <Link to='/home' className='homebtn btn'>Home</Link>
           <Link to='/about' className='aboutbtn btn'>about</Link>
         </header>
 
-        <Route exact path='/'>
+        <Route exact path='/home'>
           <section className='upper-content-section'>
             <div className='top-left'>
             </div>
@@ -93,68 +82,18 @@ function App() {
             </div>
           </section>
         </Route>
-        <Route path='/login'>
-          <div className='login-form-holder'>
-            <form id='login-form' onSubmit={onSub}>
-              <label>
-                Username:&nbsp;
-                <input 
-                id='username'
-                type='text'
-                onChange={onUpdate}
-                value={login.username}
-                name='username'/>
-              </label>
-              <label>
-              Password:&nbsp;
-                <input 
-                id='password'
-                type='password'
-                onChange={onUpdate}
-                value={login.password}
-                name='password'/>
-              </label>
-              <input 
-                className='sub' 
-                name='sub' 
-                type='submit' 
-                value='submit' 
-                id='login-button' 
-                disabled={disable}/>
-            </form>
-          </div>
-        </Route>
-        <Route path='/create'>
-        <div className='login-form-holder'>
-            <form id='new-login-form' onSubmit={onSub}>
-              <label>
-                Create A Username:&nbsp;
-              <input 
-                id='new-username'
-                type='text'
-                onChange={onUpdate}
-                value={newLogin.username}
-                name='username'/>
-              </label>
-              <label>
-              Create A Password:&nbsp;
-              <input 
-                id='new-password'
-                type='password'
-                onChange={onUpdate}  /* might get its own function in the future*/
-                value={newLogin.password}
-                name='password'/>
-              </label>
-              <input 
-                className='sub' 
-                name='sub' 
-                type='submit' 
-                value='submit' 
-                id='new-login-button' 
-                disabled={disable}/>
-            </form>
-          </div>
-        </Route>
+        <Login
+        login = {login}
+        setLogin = {setLogin}
+        disable = {disable}
+        onSub = {onSub}
+        />
+        <Create
+        setNewLogin = {setNewLogin}
+        newLogin = {newLogin}
+        disable = {disable}
+        onSub = {onSub}
+        />
       </div>
     </Router>
   );

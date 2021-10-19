@@ -36,11 +36,9 @@ const addNewUser = (newUser) => {
       console.log(error);
     });
 };
-const newinput=(name, value)=>{
-  
-setFormValues({...formValues, [name]: value,
-});
-
+const newinput=(name, value)=> {
+ setFormValues({...formValues, [name]: value,});
+};
 
 const submit = () => {
   const newUser = {
@@ -53,20 +51,21 @@ const onSubmit = (event) => {
   event.preventDault();
    submit();
   setFormValues(startFormValues);
-}
+};
 
 
 
   return (
-    
+    <Router>
     <div className="App">
       <header className="App-header">
       <h1 className="afric-Mark">African Marketplace</h1>
+      
       <switch>
-     <link exact to="/">Home
+     <Link exact to="/">Home
      <Route  path="/login">
             </Route>
-            </link>
+            </Link>
 
      <Link to="/login">Login
     
@@ -75,6 +74,7 @@ const onSubmit = (event) => {
      <Link to="/signup">Sign up page
           </Link>
     </switch>
+    
      </header>
      
      <Route exact path='/'>     
@@ -106,10 +106,10 @@ const onSubmit = (event) => {
             </div>
     </Route>
             </Route>
-
+           
             <Route path='/signup'>
             <div>
-            <form  onSubmit={ newinput}>
+            <form  onSubmit={ onSubmit}>
               <label> newUser Name 
                <input 
                 type='text'
@@ -131,12 +131,13 @@ const onSubmit = (event) => {
                 value='submit' 
                    />
             </form>          
-    </div>
-     </Route>
-     </div>
+          </div>
+        </Route>
+        </div>
+     </Router>
   
   );
-}
 
-}
+ }
+
 export default App;

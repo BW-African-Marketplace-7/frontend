@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { BrowserRouter as Router} from "react-router-dom";
-import {Route, Link,Switch } from "react-router-dom";
+import {Route, Link, Switch } from "react-router-dom";
 import './App.css';
-
-
-
+import Login from './Login';
+import banner from './images/banner.jpg';
 
 
  function App() { 
@@ -17,9 +16,9 @@ const startFormValues = {
 
 
   // my state slices
-  const [users, setUsers] = useState(startFormValues);
-  const [formValues, setFormValues] = useState([]);
-  const [disabled, setDisabled] = useState(true);
+  const [users, setUsers] = useState([]);
+  const [formValues, setFormValues] = useState(startFormValues);
+  const [disabled, setDisabled] = useState();
 
 
 
@@ -45,6 +44,7 @@ const submit = () => {
     name: formValues.name.trim(),
     password: formValues.password.trim(),
   };
+
   addNewUser(newUser);
 };
 const onSubmit = (event) => {
@@ -58,30 +58,39 @@ const onSubmit = (event) => {
   return (
     <Router>
     <div className="App">
+    
       <header className="App-header">
+        <div className="logo">
+_______________________________________________________________________________________
       <h1 className="afric-Mark">African Marketplace</h1>
-      
-      <switch>
-     <Link exact to="/">Home
+_______________________________________________________________________________________  
+<button>activate</button>
+     </div> 
+
+     
+     </header>
+     <div>
+      <Switch>
+
+     <Link id="home-link" exact to="/">Home
      <Route  path="/login">
             </Route>
             </Link>
 
-     <Link to="/login">Login
-    
-     </Link>
+     <Link id="login-link"to="/login">Login</Link>
 
-     <Link to="/signup">Sign up page
+     <Link id="signup-link" to="/signup">Sign up page
           </Link>
-    </switch>
+    </Switch>
     
-     </header>
+     </div>
      
-     <Route exact path='/'>     
+     <Route exact path='/' id="path"> 
+        
   <Route  path="/login">
             <div>
-              <form  onSubmit={ onSubmit}>
-              <label> Username: 
+              <form className=" login-form"  onSubmit={ onSubmit}>
+              <label className="user-name"> Username: 
                 <input 
                 type='text'
                 onChange={newinput}
@@ -89,7 +98,7 @@ const onSubmit = (event) => {
                  name='username'
                  />
               </label>
-              <label> Password: 
+              <label className="pass=word"> Password: 
                 <input 
                 type='text'
                 onChange={ newinput}
@@ -97,7 +106,7 @@ const onSubmit = (event) => {
                 name='password'/>
               </label>
 
-              <input 
+              <input id="sub-btn"
                 type='submit'                    
                 value='submit' 
                />
@@ -107,18 +116,18 @@ const onSubmit = (event) => {
     </Route>
             </Route>
            
-            <Route path='/signup'>
+            <Route path='/signup' id="sign-path">
             <div>
-            <form  onSubmit={ onSubmit}>
-              <label> newUser Name 
-               <input 
+            <form className=" form-signup" onSubmit={ onSubmit}>
+              <label className="new-user"> newUser Name 
+               <input id=" new-user"
                 type='text'
                 onChange={ newinput}
                 value={users.name}
                 name='username'/>
                 </label>
 
-             <label> password: 
+             <label className="new-user"> password: 
              <input
                 type='text'
                 onChange={ newinput}  
@@ -126,7 +135,7 @@ const onSubmit = (event) => {
                 name='password'/>
               </label>
 
-              <input 
+              <input id=" sign-btn"
                 type='submit'                    
                 value='submit' 
                    />

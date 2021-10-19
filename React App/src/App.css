@@ -1,0 +1,21 @@
+.afric-Mark{
+display:flex;
+justify-content: center;
+align-items: center;
+font-size: 50px;
+padding: 12.5px 35px;
+}
+
+
+
+.logo {
+    position:absolute;
+    left:550px;
+    top:200px; 
+     color:white; 
+    line-height: 10px;
+    font-family: "Open sans",Helvetica,sans-serif ;
+    z-index:1;
+}
+
+

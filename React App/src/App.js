@@ -1,152 +1,116 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import { BrowserRouter as Router} from "react-router-dom";
-import {Route, Link, Switch } from "react-router-dom";
 import './App.css';
+import axios from 'axios';
+import {BrowserRouter as Router}  from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import React, {useState, useEffect} from "react";
+ import Create from './Create';
 import Login from './Login';
-import banner from './images/banner.jpg';
 
 
- function App() { 
-//inital form values
-const startFormValues = {
-  name: "",
-  password: "",
-};
+function App() {
 
+  const loginDefault = {
+    username: '',
+    password: ''
+  }
+  const [loginData, setLoginData] =useState()/* needs use */
+  const [islogged,setLogged] = useState(false)
+  const [disable, setDisable] = useState(false)
+  const [login,setLogin] = useState(loginDefault)
+  const [newLogin, setNewLogin] =useState(loginDefault)
+  const [serverRes, setRes] = useState([])
 
-  // my state slices
-  const [users, setUsers] = useState([]);
-  const [formValues, setFormValues] = useState(startFormValues);
-  const [disabled, setDisabled] = useState();
-
-
-
-const addNewUser = (newUser) => {
-  axios
-    .post('no location data' , newUser)
-    .then((response) => {
-      console.log(response);
-      setUsers([response.data, ...users]);
-      console.log(setUsers);
-      setFormValues(startFormValues);
+  const postValues = (newVal) =>{
+    axios.post('https://reqres.in/api/orders', newVal) /* needs an actual api*/
+    .then(res =>{
+      setRes([res.data,...serverRes])
+      console.log(res)
     })
-    .catch((error) => {
-      console.log(error);
-    });
-};
-const newinput=(name, value)=> {
- setFormValues({...formValues, [name]: value,});
-};
+    .catch(valueError => console.error(valueError)
+    )
+    .finally(()=> {
+      setLogin(loginDefault)
+      setLogged(true)
+    })
+  }
+  
 
-const submit = () => {
-  const newUser = {
-    name: formValues.name.trim(),
-    password: formValues.password.trim(),
-  };
+  const submit = () => {
 
-  addNewUser(newUser);
-};
-const onSubmit = (event) => {
-  event.preventDault();
-   submit();
-  setFormValues(startFormValues);
-};
+    const newForm = {
+      username: login.username.trim(),
+      password: login.password.trim()
+    }
+    postValues(newForm)
+  }
+
+  const onSub = event =>{
+    event.preventDefault();
+    submit();
+  }
+
+
 
 
 
   return (
     <Router>
-    <div className="App">
-    
-      <header className="App-header">
-        <div className="logo">
+      <div className="App">
+        <header className="App-header">
+        <div className="logo"> 
 _______________________________________________________________________________________
-      <h1 className="afric-Mark">African Marketplace</h1>
-_______________________________________________________________________________________  
-<button>activate</button>
-     </div> 
-
-     
-     </header>
-     <div>
-      <Switch>
-
-     <Link id="home-link" exact to="/">Home
-     <Route  path="/login">
-            </Route>
-            </Link>
-
-     <Link id="login-link"to="/login">Login</Link>
-
-     <Link id="signup-link" to="/signup">Sign up page
-          </Link>
-    </Switch>
-    
-     </div>
-     
-     <Route exact path='/' id="path"> 
-        
-  <Route  path="/login">
-            <div>
-              <form className=" login-form"  onSubmit={ onSubmit}>
-              <label className="user-name"> Username: 
-                <input 
-                type='text'
-                onChange={newinput}
-                 value={users.name}
-                 name='username'
-                 />
-              </label>
-              <label className="pass=word"> Password: 
-                <input 
-                type='text'
-                onChange={ newinput}
-                value={users.password}
-                name='password'/>
-              </label>
-
-              <input id="sub-btn"
-                type='submit'                    
-                value='submit' 
-               />
-               
-            </form>
-            </div>
-    </Route>
-            </Route>
-           
-            <Route path='/signup' id="sign-path">
-            <div>
-            <form className=" form-signup" onSubmit={ onSubmit}>
-              <label className="new-user"> newUser Name 
-               <input id=" new-user"
-                type='text'
-                onChange={ newinput}
-                value={users.name}
-                name='username'/>
-                </label>
-
-             <label className="new-user"> password: 
-             <input
-                type='text'
-                onChange={ newinput}  
-                value={users.password}
-                name='password'/>
-              </label>
-
-              <input id=" sign-btn"
-                type='submit'                    
-                value='submit' 
-                   />
-            </form>          
+              <h1 className="App-h1">AFRICAN MARKETPLACE</h1>
+_______________________________________________________________________________________
           </div>
-        </Route>
-        </div>
-     </Router>
-  
-  );
+          
+          <div className="link-container">
+          <ul>
+          {islogged ? null:<li> <Link id="create" to='/create'> <button className='createbtn btn'>Sign Up</button></Link></li>}
+          {islogged ? null:<li><Link id="login" to='/login'><button className='loginbtn btn'>Login</button></Link></li>}
+          {islogged ? <button onClick={()=>setLogged(!islogged)}className='logout btn'>Logout</button>: null}
+            
+         <li> <Link id="home-link" exact to='/home'><button className="homebtn btn">Home</button></Link></li>
 
- }
+          <li><Link id="about-link"to='/about'><button className="aboutbtn btn">about</button></Link></li>
+          </ul>
+          </div>
+        </header>
+
+        <Route exact path='/home'>
+          <section className='upper-content-section'>
+            <div className='top-left'>
+            </div>
+            <div className='top-right'>
+            </div>
+          </section>
+          <section className='content-section'>
+            <div className='mid-left'>
+            </div>
+            <div className='mid-right'>
+            </div>
+          </section>
+          <section className='lower-content-section'>
+            <div className='mid-left'>
+            </div>
+            <div className='mid-right'>
+            </div>
+          </section>
+        </Route>
+        <Login
+        login = {login}
+        setLogin = {setLogin}
+        disable = {disable}
+        onSub = {onSub}
+        />
+         <Create 
+        setNewLogin = {setNewLogin}
+        newLogin = {newLogin}
+        disable = {disable}
+        onSub = {onSub}
+        /> 
+      </div>
+    </Router>
+  );
+}
 
 export default App;

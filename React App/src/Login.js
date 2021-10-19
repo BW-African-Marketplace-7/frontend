@@ -1,79 +1,59 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
+import { Link, Route } from 'react-router-dom';
 
 
+const Create=(props)=>{
 
-
-  const Login = (props) =>{
-    const startFormValues = {
-      username: " ",
-      password: " ",
-    };
+    const {
+    login,
+    setLogin,
+    disable,
+    onSub, } = props
     
-    const [users, setUsers] = useState([]);
-    const [formValues, setFormValues] = useState(startFormValues);
-    const [disabled, setDisabled] = useState(true);
+    const onUpdate=(evt)=>{
+        const {name, value} = evt.target
+            update(name, value)
+    }
+    
+    const update = (name, value) => {
+    /*validate(name, value) needs to be setup through schema */
+    setLogin({...login, [name]: value});
+    }
 
 
-    const newinput=(name, value)=> {
-        setFormValues({...formValues, [name]: value,});
-       };
-
-    const onChange = (event) => {
-        const { name, value } = event.target;
-        newinput(name, value);
-      };
-
-      const submit = () => {
-        const newUser = {
-          name: formValues.username.trim(),
-          password: formValues.password.trim(),
-        };
-
-
-    const onSubmit = (event) => {
-        event.preventDefault();
-        props.Login({formValues});
-        submit(formValues);
-      };
-
-      return(
-            <div>
-              <form className onSubmit={ onSubmit}>
-               <div className="main-login">
-                  <h2>Login p age</h2>
-                    </div>     
-                  
-                    <label>user-name:
-                        <input
-                      type="text"
-                        name="username"
-                        value={formValues.username}
-                        onChange={newinput}
-                      />                                                            </label>
-                  
-        
-                  
-                    <label> Password:
-                      <input
-                        name="password"
-                        value={formValues.password}
-                        onChange={newinput}
-                        placeholder="Password"
-                      />
-                    </label>
-                    <input id="log-in"
-                    type="submit" value='submit'>log in</input>   
-                 
-                
-              </form>
-            </div>
-          );
-        };
-    } 
-        export default Login;   
+return(
+<Route path='/login'>
+    <div className='login-form-holder'>
+        <form id='login-form' onSubmit={onSub}>
+        <label>
+            Username:&nbsp;
+            <input 
+            id='username'
+            type='text'
+            onChange={onUpdate}
+            value={login.username}
+            name='username'/>
+        </label>
+        <label>
+        Password:&nbsp;
+            <input 
+            id='password'
+            type='password'
+            onChange={onUpdate}
+            value={login.password}
+            name='password'/>
+        </label>
+        <input 
+            className='sub' 
+            name='sub' 
+            type='submit' 
+            value='submit' 
+            id='login-button' 
+            disabled={disable}/>
+        </form>
+    </div>
+</Route>
+)}
 
 
-
-
+export default Create
      

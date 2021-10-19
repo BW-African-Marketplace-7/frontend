@@ -6,11 +6,49 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url("./images/banner.jpg"); 
+  background-repeat: no-repeat;
+  background-size:cover;
 }
-
+ 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 
+  
+
+
+
+
+
+/* #home-link {
+  
+color:white;
+font-size: 16px;
+text-decoration: none;
+
+}
+
+#login-link {
+  font-size: 16px;
+  color:white;
+ 
+}
+
+#signup-link {
+  font-size: 16px;
+  color:white;
+  
+
+}
+
+.active{
+
+  position:absolute;
+  top: 350px;
+  right:400px;
+padding:20px  40px;
+ font-size: 30px;
+
+} */

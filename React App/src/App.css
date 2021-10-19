@@ -1,21 +1,114 @@
-.afric-Mark{
+.App-h1 {
 display:flex;
 justify-content: center;
 align-items: center;
 font-size: 50px;
 padding: 12.5px 35px;
+letter-spacing: 1.5px;;
 }
-
-
 
 .logo {
     position:absolute;
-    left:550px;
-    top:200px; 
+    left:420px;
+    top:229px; 
      color:white; 
     line-height: 10px;
     font-family: "Open sans",Helvetica,sans-serif ;
     z-index:1;
 }
 
+.link-container {
 
+    display:flex;
+    justify-content: end;
+    flex-direction: row;
+    padding-right: 20px;
+    font-size: 16px;
+    
+    height: 40vh;
+  
+  }
+ 
+ 
+  ul {
+  width:50px;
+  height:20px;
+  padding-right: 50px;
+  
+  
+  }
+
+  li, #create {
+    
+    color:white;
+    font-size: 16px;
+    text-decoration: none;
+    list-style: none;
+    padding:10px 10px;
+    cursor: pointer;
+    }
+
+    li, #login {
+    
+      color:white;
+      font-size: 16px;
+      text-decoration: none;
+      list-style: none;
+      cursor: pointer;
+       padding:10px 10px;
+      }
+
+
+
+
+
+  li, #home-link {
+    
+    color:white;
+    font-size: 16px;
+    text-decoration: none;
+    list-style: none;
+    cursor: pointer;
+     padding:10px 10px;
+    }
+  
+    
+   li, #about-link {
+      font-size: 16px;
+      color:white;
+      text-decoration: none;
+      list-style: none;
+      padding:10px 10px;
+      cursor: pointer;
+    }
+  
+  
+    .aboutbtn {
+      padding:10px 10px; 
+    border-radius: 50%;
+    }
+
+
+
+    .homebtn {
+      padding:10px 10px; 
+      border-radius: 50%;
+    }
+
+    .loginbtn {
+      padding:10px 10px; 
+      border-radius: 50%;
+      }
+
+
+      .createbtn {
+       padding:10px 10px;    
+        border-radius: 50%;
+        }
+
+        .logout {
+
+          padding:10px 10px;    
+          border-radius: 50%;
+
+        }

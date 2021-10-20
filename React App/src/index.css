@@ -15,40 +15,38 @@ code {
     monospace;
 }
 
-
-  
-
-
-
-
-
-/* #home-link {
-  
+#new-login-form {
+position:absolute;
+top:34.375em;
+left: 28.875em;
 color:white;
-font-size: 16px;
-text-decoration: none;
+font-weight: 600;
 
 }
-
-#login-link {
-  font-size: 16px;
-  color:white;
- 
-}
-
-#signup-link {
-  font-size: 16px;
-  color:white;
   
+label {
+font-size:1em;
 
 }
 
-.active{
+.sub {
+  position:absolute;
+  top:50px;
+  right:20px;
+  padding:15px 35px;
+  border-radius: 50%;
+  color:red;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+
+#login-form {
 
   position:absolute;
-  top: 350px;
-  right:400px;
-padding:20px  40px;
- font-size: 30px;
+  top:34.375em;
+  left: 27.875em;
+  color:white;
+  font-weight: 600;
 
-} */
+}

@@ -28,8 +28,8 @@ const Create =(props)=>{
         <form 
         id='new-login-form' 
         onSubmit={onSub}>
-        <label>
-            Create A Username:&nbsp;
+        <label >
+            Create A Username: &nbsp;
         <input 
             id='new-username'
             type='text'
@@ -38,7 +38,7 @@ const Create =(props)=>{
             name='username'/>
         </label>
         <label>
-        Create A Password:&nbsp;
+          Create A Password:  &nbsp;
         <input 
             id='new-password'
             type='password'

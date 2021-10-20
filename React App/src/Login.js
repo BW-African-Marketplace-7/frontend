@@ -25,7 +25,7 @@ return(
     <div className='login-form-holder'>
         <form id='login-form' onSubmit={onSub}>
         <label>
-            Username:&nbsp;
+            Username: &nbsp;
             <input 
             id='username'
             type='text'
@@ -33,8 +33,8 @@ return(
             value={login.username}
             name='username'/>
         </label>
-        <label>
-        Password:&nbsp;
+        <label>  
+        Password: &nbsp;
             <input 
             id='password'
             type='password'

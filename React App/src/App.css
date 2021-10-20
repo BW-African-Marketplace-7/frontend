@@ -80,12 +80,14 @@ letter-spacing: 1.5px;;
       list-style: none;
       padding:10px 10px;
       cursor: pointer;
+      
     }
   
   
     .aboutbtn {
       padding:10px 10px; 
     border-radius: 50%;
+    text-transform: capitalize;
     }
 
 

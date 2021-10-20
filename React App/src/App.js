@@ -11,55 +11,73 @@ function App() {
 
   const loginDefault = {
     username: '',
+    email:'',
     password: ''
   }
-  const [loginData, setLoginData] =useState()/* needs use */
-  const [islogged,setLogged] = useState(false)
-  const [disable, setDisable] = useState(false)/*for now set to true when fixed*/ 
-  const [login,setLogin] = useState(loginDefault)
+  const [err, setErr] = useState() //will be for rendering errors using disable state
+  const [islogged, setLogged] = useState(false)
+  const [disable, setDisable] = useState(false)
+  const [login, setLogin] = useState(loginDefault)
   const [newLogin, setNewLogin] =useState(loginDefault)
-  const [serverRes, setRes] = useState([])
+  const [userList, setList] = useState([])
 
-
-  const postValues = (newVal) =>{
-    axios.post('https://reqres.in/api/orders', newVal) /* needs an actual api*/
+  
+  const createUser = (newUser) =>{
+    axios.post('https://fakedata.free.beeceptor.com', newUser) /* needs an actual api*/
     .then(res =>{
-      setRes([res.data,...serverRes])
       console.log(res)
+      setList([...userList, newUser])
+      setLogin(loginDefault)
+      setNewLogin(loginDefault)
+      setLogged(true)
     })
     .catch(valueError => console.error(valueError)
     )
-    .finally(()=> {
-      setLogin(loginDefault)
-      setLogged(true)
-    })
   }
-  
+  useEffect(()=>{
+    console.log(userList)
+  },[userList])
 
   const submit = () => {
 
     const newForm = {
-      username: login.username.trim(),
-      password: login.password.trim()
+      username: newLogin.username.trim(),
+      email: newLogin.email.trim(),
+      password: newLogin.password.trim()
     }
-    postValues(newForm)
+    createUser(newForm)
+    
   }
 
   const onSub = event =>{
     event.preventDefault();
     submit();
   }
-  
+
+
+
+
+
+
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1 className='App-h1'>African Marketplace</h1>
-          {islogged ? null: <Link to='/create' className='createbtn btn'>Sign Up</Link>}
-          {islogged ? null:<Link to='/login' className='loginbtn btn'>Login</Link>}
+
+        <div className="logo"> 
+_______________________________________________________________________________________
+              <h1 className="App-h1">AFRICAN MARKETPLACE</h1>
+_______________________________________________________________________________________
+          </div>
+          <div className="link-container">
+          <ul>
+          {islogged ? null:<li> <Link id="create" to='/create'> <button className='createbtn btn'>Sign Up</button></Link></li>}
+          {islogged ? null:<li><Link id="login" to='/login'><button className='loginbtn btn'>Login</button></Link></li>}
           {islogged ? <button onClick={()=>setLogged(!islogged)}className='logout btn'>Logout</button>: null}
-          <Link to='/home' className='homebtn btn'>Home</Link>
-          <Link to='/about' className='aboutbtn btn'>about</Link>
+          <li><Link id="home-link" to='/home'><button className="homebtn btn">Home</button></Link></li>
+          <li><Link id="about-link"to='/about'><button className="aboutbtn btn">about</button></Link></li>
+          </ul>
+          </div>
         </header>
 
         <Route exact path='/home'>
@@ -86,12 +104,19 @@ function App() {
         login = {login}
         setLogin = {setLogin}
         disable = {disable}
-        onSub = {onSub}
+        setDisable = {setDisable}
+        err = {err}
+        setErr = {setErr}
+        userList = {userList}
+        setLogged = {setLogged}
         />
         <Create
         setNewLogin = {setNewLogin}
         newLogin = {newLogin}
         disable = {disable}
+        setDisable = {setDisable}
+        err = {err}
+        setErr = {setErr}
         onSub = {onSub}
         />
       </div>

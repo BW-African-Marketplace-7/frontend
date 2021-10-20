@@ -1,6 +1,7 @@
 import { Link, Route } from 'react-router-dom';
-
-
+import * as yup from 'yup'
+import Schema from './CreateSchema';
+import React, { useEffect } from 'react';
 
 
 const Create =(props)=>{
@@ -9,6 +10,9 @@ const Create =(props)=>{
     setNewLogin,
     newLogin,
     disable,
+    setDisable,
+    err,
+    setErr, 
     onSub
     } = props
 
@@ -17,8 +21,20 @@ const Create =(props)=>{
             logUpdate(name, value)
     }
 
+    const validate = (name,value) => {
+        yup.reach(Schema, name)
+        .validate(value)
+        .then(() => setErr({...err, [name]: ''}))
+        .catch(err => setErr({...err, [name]: err.errors[0] }))
+    }
+
+    useEffect(()=>{
+        Schema.isValid(newLogin).then(valid =>
+          setDisable(!valid)) 
+    },[newLogin])
+
     const logUpdate = (name, value) => {
-        /*validate(name, value) needs to be setup through schema */
+        validate(name, value)
         setNewLogin({...newLogin, [name]:value})
     }
 
@@ -28,8 +44,8 @@ const Create =(props)=>{
         <form 
         id='new-login-form' 
         onSubmit={onSub}>
-        <label>
-            Create A Username:&nbsp;
+        <label >
+            Enter a username: &nbsp;
         <input 
             id='new-username'
             type='text'
@@ -38,7 +54,16 @@ const Create =(props)=>{
             name='username'/>
         </label>
         <label>
-        Create A Password:&nbsp;
+          Enter a valid email:  &nbsp;
+        <input 
+            id='new-email'
+            type='email'
+            onChange={logOnUpdate}  
+            value={newLogin.email}
+            name='email'/>
+        </label>
+        <label>
+          Enter a password:  &nbsp;
         <input 
             id='new-password'
             type='password'
@@ -47,7 +72,6 @@ const Create =(props)=>{
             name='password'/>
         </label>
         <input
-            onClick={()=> window.location.href='http://localhost:3000/home'} /* bad logic returns to home but does not seem to be storing submit*/
             className='sub' 
             name='sub' 
             type='submit' 

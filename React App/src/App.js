@@ -20,7 +20,7 @@ function App() {
   const [newLogin, setNewLogin] =useState(loginDefault)
   const [serverRes, setRes] = useState([])
 
-
+  
   const postValues = (newVal) =>{
     axios.post('https://reqres.in/api/orders', newVal) /* needs an actual api*/
     .then(res =>{
@@ -49,17 +49,34 @@ function App() {
     event.preventDefault();
     submit();
   }
-  
+
+
+
+
+
+
   return (
     <Router>
       <div className="App">
         <header className="App-header">
-          <h1 className='App-h1'>African Marketplace</h1>
-          {islogged ? null: <Link to='/create' className='createbtn btn'>Sign Up</Link>}
-          {islogged ? null:<Link to='/login' className='loginbtn btn'>Login</Link>}
+
+        <div className="logo"> 
+_______________________________________________________________________________________
+              <h1 className="App-h1">AFRICAN MARKETPLACE</h1>
+_______________________________________________________________________________________
+          </div>
+          
+          <div className="link-container">
+          <ul>
+          {islogged ? null:<li> <Link id="create" to='/create'> <button className='createbtn btn'>Sign Up</button></Link></li>}
+          {islogged ? null:<li><Link id="login" to='/login'><button className='loginbtn btn'>Login</button></Link></li>}
           {islogged ? <button onClick={()=>setLogged(!islogged)}className='logout btn'>Logout</button>: null}
-          <Link to='/home' className='homebtn btn'>Home</Link>
-          <Link to='/about' className='aboutbtn btn'>about</Link>
+            
+         <li> <Link id="home-link" exact to='/home'><button className="homebtn btn">Home</button></Link></li>
+
+          <li><Link id="about-link"to='/about'><button className="aboutbtn btn">about</button></Link></li>
+          </ul>
+          </div>
         </header>
 
         <Route exact path='/home'>

@@ -52,6 +52,7 @@
       list-style: none;
       cursor: pointer;
       padding:10px 10px;
+      
       }
 
 
@@ -89,23 +90,35 @@
     padding:10px 10px; 
     border-radius: 50%;
     text-transform: capitalize;
+    background-color:rgba(255, 255, 255,0.5);
+    color:black;
+    font-weight: 600;
     }
 
 
   .homebtn {
     padding:10px 10px; 
     border-radius: 50%;
+    background-color:rgba(255, 255, 255,0.5);
+    color:black;
+    font-weight: 600;
    }
 
   .loginbtn {
     padding:10px 10px; 
     border-radius: 50%;
+    background-color:rgba(255, 255, 255,0.5);
+    color:black;
+    font-weight: 600;
    }
 
 
   .createbtn {
     padding:10px 10px;    
     border-radius: 50%;
+    background-color:rgba(255, 255, 255,0.5);
+    color:black;
+    font-weight: 600;
    }
 
   .logout {

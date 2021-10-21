@@ -19,7 +19,7 @@ code {
 #new-login-form {
 position:absolute;
 top:34.375em;
-left: 28.875em;
+left: 20.875em;
 color:white;
 font-weight: 600;
 
@@ -39,6 +39,10 @@ font-size:1em;
   color:red;
   font-size: 16px;
   text-transform: capitalize;
+  background-color:rgba(255, 255, 255,0.5);
+    /* color:black; */
+    font-weight: 600;
+
 }
 
 
@@ -49,5 +53,6 @@ font-size:1em;
   left: 27.875em;
   color:white;
   font-weight: 600;
+  
 
 }
